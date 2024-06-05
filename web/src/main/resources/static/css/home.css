@@ -1,0 +1,161 @@
+*
+{
+    font-size: 16px;
+    margin: 0;
+    padding: 0;
+    justify-content: center;
+}
+body
+{
+    text-align: center;
+    min-width: 350px;
+    background-image: url('https://static.vecteezy.com/system/resources/previews/011/058/150/original/blank-white-background-with-wavy-green-and-simple-design-suitable-for-presentation-background-vector.jpg');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: 100% 100%;
+    justify-content: center;
+}
+a, a:hover
+{
+    text-decoration: none;
+}
+nav
+{
+    top: 0;
+    min-width: 100%;
+    z-index: 1000;
+    min-height: 4rem;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+}
+.navbar-toggler
+{
+    display: flow-root;
+}
+#dropdown-btn
+{
+    padding: 0 0;
+    border-radius: 50%;
+    border-width: 0rem;
+}
+.dropdown-menu
+{
+    display: block;
+    right: 0;
+    left: auto;
+    padding: 0;
+    margin: 0;
+    visibility: collapse;
+}
+.dropdown-menu.open
+{
+    visibility: visible;
+}
+.dropdown-item
+{
+    font-weight: 500;
+}
+.dropdown-item:hover
+{
+    background-color: rgba(215, 215, 215, 0.215);
+}
+/*  */
+#sidebar
+{
+    left: -25rem;
+    top: 65px;
+    width: 25rem;
+    height: calc(100vh);
+    z-index: 800;
+    position: fixed;
+    padding-top: 15px;
+    transition: left 0.1s linear;
+}
+#sidebar.active
+{
+    left:0;
+}
+#sidebar > a, #sidebar > button
+{
+    min-height: 3rem;
+    min-width: 100%;
+    padding: 0.5rem 0;
+    margin-top: 0.5rem;
+    font-size: large;
+    font-weight: 500;
+    color: white;
+}
+#join-class
+{
+    position: fixed;
+    top: 65px;
+    left: auto;
+    background-color: rgb(234, 230, 224);
+    z-index: 850;
+    width: 20rem;
+    height: 15rem;
+    padding: 0;
+    border-radius: 5%;
+    visibility: collapse;
+}
+#join-class.open
+{
+    visibility: visible;
+}
+#create-class
+{
+    position: fixed;
+    top: 65px;
+    left: auto;
+    background-color: rgb(234, 230, 224);
+    z-index: 850;
+    width: 20rem;
+    height: 20rem;
+    padding: 0;
+    border-radius: 5%;
+    visibility: collapse;
+}
+#create-class.open
+{
+    visibility: visible;
+}
+/* home */
+#workspace
+{
+    position: absolute;
+    top: 64px;
+    padding: 1rem 1rem;
+    margin: 0;
+    z-index: 700;
+}
+.room
+{
+    background-color: rgba(28, 27, 27, 0.803);
+    border-radius: 5%;
+}
+.card-title
+{
+    margin: 0;
+    width: 15rem;
+    height: 15rem;
+}
+.roomname
+{
+    padding: 0.5rem 0;
+    font-size: larger;
+    font-weight: 600;
+    color: white;
+    height: 3rem;
+}
+.info-class
+{
+    height: calc(15rem - 3rem);
+}
+.info
+{
+    text-align: start;
+    white-space: nowrap;
+    overflow: scroll;
+    text-overflow: ellipsis;
+}

@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>OTTN</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+    <link rel="icon" type="image" href="images/WebIcon.png">
+    <link rel="stylesheet" href="css/home.css">
+  </head>
+  <body>
+    <nav class="navbar navbar-dark position-fixed bg-dark justify-content-between">
+      <button id="toggle" class="navbar-toggler" type="button">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="dropdown">
+        <button class="btn" type="button" id="dropdown-btn">
+          <img src="images/icon-btn.png"  width="40px" height="40px">
+        </button>
+        <div class="dropdown-menu bg-dark"  id="dropdown-account">
+          <a class="dropdown-item text-light" href="info.html">Information</a>
+          <a class="dropdown-item text-light" href="changePassword.html">Change Password</a>
+          <a class="dropdown-item text-light" href="addAccount.html">Add Account</a>
+          <a class="dropdown-item text-danger" href="login.html">Log out</a>
+        </div>
+      </div>
+    </nav>
+    <!--  -->
+    <div class="container-fluid">
+      <div class="row flex-lg-nowrap">
+        <div id="sidebar" class="col bg-dark d-block">
+          <button id="create-class-btn" class="btn bg-secondary" type="button">Create Class</button>
+                    <button id="join-class-btn" class="btn bg-secondary" type="button">Join Class</button>
+          <div>
+            <input id="search-input-sidenav" type="search" class="form-control my-2" placeholder="Search"/>
+          </div>
+          <hr class="m-0 bg-light"/>
+          <a href="studentClass.html" class="btn bg-secondary">Anh Văn 12</a>
+          <a href="studentClass.html" class="btn bg-secondary">Lịch sử THPTQG</a>
+          <a href="studentClass.html" class="btn bg-secondary">Địa lí HSG</a>
+        </div>
+        <!-- join -->
+        <div id="join-class" class="container">
+          <div class="form-join-class d-flex justify-content-center py-5">
+            <form action="" method="post">
+              <div class="form-group">
+                <input type="text" name="classID" class="form-control-lg w-75" placeholder="Type Class ID" maxlength="30">
+                <br>
+                <span class="text-info text-break">The ID which your teacher give to you</span>
+              </div>
+              <div class="form-group">
+                <button type="button" name="inputClassID" class="btn btn-primary w-25 btn-group">Join</button>
+                <button type="button" name="closeJoinClass" class="btn btn-danger w-25 btn-group" onclick="closeJoinClassBtn()">Close</button>
+              </div>
+            </form>
+          </div>
+        </div>
+        <!-- create -->
+        <div id="create-class" class="container">
+          <div class="form-create-class d-flex justify-content-center py-5">
+            <form action="" method="post">
+              <div class="form-group">
+                <input type="text" name="className" class="form-control-lg w-100" placeholder="Type Class name" maxlength="50">
+                <br>
+                <span class="text-info text-break"></span>
+              </div>
+              <div class="form-group">
+                <select name="grade" class="form-control-lg w-100">
+                  <option value="10">10</option>
+                  <option value="11">11</option>
+                  <option value="12">12</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <input type="text" name="subject" class="form-control-lg w-100" placeholder="Subject" maxlength="50">
+                <br>
+                <span class="text-info text-break"></span>
+              </div>
+              <div class="form-group">
+                <button type="button" name="inputClassInfo" class="btn btn-primary w-25 btn-group">Create</button>
+                <button type="button" name="closeCreateClass" class="btn btn-danger w-25 btn-group" onclick="closeCreateClassBtn()">Close</button>
+              </div>
+            </form>
+          </div>
+        </div>
+        <!--  -->
+        <div id="workspace" class="d-flex flex-wrap justify-content-md-start justify-content-sm-between w-100">
+          <div class="m-1 room">
+            <div class="card-title">
+              <a href="studentClass.html"><div class="d-flex justify-content-center roomname">Anh Văn 12</div></a>
+              <hr class="m-0 bg-light">
+              <div class="info-class p-2">
+                <div class="info text-light">Subject: </div>
+                <div class="info text-light">Grade: </div>
+                <div class="info text-light">Teacher: </div>
+                <div class="info text-light">Code: </div>
+              </div>
+            </div>
+          </div>
+          <div class="m-1 room">
+            <div class="card-title">
+              <a href="teacherClass.html"><div class="d-flex justify-content-center roomname">Lịch sử THPTQG</div></a>
+              <hr class="m-0 bg-light">
+              <div class="info-class p-2">
+                <div class="info text-light">Subject: </div>
+                <div class="info text-light">Grade: </div>
+                <div class="info text-light">Teacher: </div>
+                <div class="info text-light">Code: </div>
+              </div>
+            </div>
+          </div>
+          <div class="m-1 room">
+            <div class="card-title">
+              <a href="studentClass.html"><div class="d-flex justify-content-center roomname">Địa lí HSG</div></a>
+              <hr class="m-0 bg-light">
+              <div class="info-class p-2">
+                <div class="info text-light">Subject: </div>
+                <div class="info text-light">Grade: </div>
+                <div class="info text-light">Teacher: </div>
+                <div class="info text-light">Code: </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <!--  -->
+    <script src="js/main.js"></script>
+  </body>
+  </html>
+  
