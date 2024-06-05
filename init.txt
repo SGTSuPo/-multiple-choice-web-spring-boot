@@ -1,0 +1,9 @@
+IntelliJ
+-maven
+-jdk: 22.2.0
++spring boot devtools
++lombok
++spring configuration
++spring web
++thymeleaf
++ms sql server driver/mysql driver
