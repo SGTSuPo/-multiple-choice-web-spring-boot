@@ -2,11 +2,13 @@ package com.example.multiplechoiceweb.model;
 
 import jakarta.persistence.*;
 import jakarta.persistence.Id;
+import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.*;
 
 import java.sql.Date;
 
 @Entity
+@NoArgsConstructor
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -31,7 +33,14 @@ public class User {
     @ManyToOne
     @JoinColumn(name = "role_id")
     private Role role;
-
+    //constructor
+    public User(String username, String password) {
+        setUsername(username);
+        setPassword(password);
+    }
+    /*test*/public User(String lastname) {
+        this.lastname = lastname;
+    }
     // getters and setters
     public Long getId() {
         return id;

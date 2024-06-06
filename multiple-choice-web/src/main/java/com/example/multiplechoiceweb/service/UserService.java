@@ -31,4 +31,13 @@ public class UserService {
     public void deleteUser(Long id) {
         userRepository.deleteById(id);
     }
+
+    public User authUser(User user) {
+            if(user.getUsername().equals("sgtsupo")) {
+                if (user.getPassword().equals("123")) {
+                    return user;
+                }
+            }
+        return null;
+    }
 }

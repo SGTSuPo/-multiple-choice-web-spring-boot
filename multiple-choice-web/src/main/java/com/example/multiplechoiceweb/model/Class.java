@@ -2,9 +2,11 @@ package com.example.multiplechoiceweb.model;
 
 import jakarta.persistence.*;
 import jakarta.persistence.Id;
+import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.*;
 
 @Entity
+@NoArgsConstructor
 public class Class {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -19,7 +21,14 @@ public class Class {
     @ManyToOne
     @JoinColumn(name = "host_id")
     private User host;
-
+    //constructor
+    public Class(Long id, String classname, String subject, String grade, User host) {
+        this.id = id;
+        this.classname = classname;
+        this.subject = subject;
+        this.grade = grade;
+        this.host = host;
+    }
     // getters and setters
     public Long getId() {
         return id;
