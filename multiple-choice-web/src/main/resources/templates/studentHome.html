@@ -34,7 +34,7 @@
           <!-- js -->
           <a th:each="class: ${class}" href="#" class="btn btn-secondary" th:text="${class.getClassname()}"></a>
         </div>
-        <!--  -->
+        <!--join class -->
         <div id="join-class" class="container">
           <div class="form-join-class d-flex justify-content-center py-5">
             <form action="" method="post">
@@ -50,6 +50,7 @@
             </form>
           </div>
         </div>
+
         <!--  -->
         <div id="workspace" class="d-flex flex-wrap justify-content-md-start justify-content-sm-between w-100">
           <div class="m-1 room" th:each="class: ${classList}">
@@ -69,6 +70,8 @@
 
     </div>
     <!--  -->
+    <script th:if="${error}!=null">alert("This code does not exist")</script>
+    <script th:if="${error}==null">alert("Joined class")</script>
     <script src="js/main.js"></script>
     <script src="js/home/student.js"></script>
   </body>

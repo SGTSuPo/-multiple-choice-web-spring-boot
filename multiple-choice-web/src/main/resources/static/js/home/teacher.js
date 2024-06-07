@@ -1,42 +1,4 @@
-async function fetchData() {
-  try {
-    const response = await fetch("http://127.0.0.1:5500/frontend/class.json");
-    if (!response.ok) {
-      throw new Error("Network response was not ok " + response.statusText);
-    }
-    const data = await response.json();
-    const classes = data.class;
-    const sidebar = document.getElementById("sidebar");
-    const workspace = document.getElementById("workspace");
-    classes.forEach((item) => {
-      //sidebar
-      sidebar.insertAdjacentHTML('beforeend',`<a href="editClass.html?id=${item.id}" class="btn btn-secondary">${item.name}</a>`)
-      //room
-      workspace.insertAdjacentHTML(
-        "beforeend",
-        `<div class="m-1 room">
-          <div class="card-title">
-              <a href="editClass.html?id=${item.id}"><div class="d-flex justify-content-center roomname">${item.name}</div></a>
-              <hr class="m-0 bg-light">
-              <div class="info-class p-2">
-                <div class="info text-light">Subject: ${item.subject}</div>
-                <div class="info text-light">Grade: ${item.grade}</div>
-                <div class="info text-light">Teacher: ${item.host.name}</div>
-                <div class="info text-light">Code: ${item.id}</div>
-              </div>
-            </div>
-        </div>`
-      );
-    });
-  } catch (error) {
-    console.error("There has been a problem with your fetch operation:", error);
-  }
-}
-fetchData();
-// create
-document
-  .getElementById("create-class-btn")
-  .addEventListener("click", function (event) {
+document.getElementById("create-class-btn").addEventListener("click", function (event) {
     const createClass = document.getElementById("create-class");
     createClass.classList.toggle("open");
     event.stopPropagation();
@@ -52,3 +14,28 @@ function closeCreateClassBtn() {
   var create = document.getElementById("create-class");
   create.classList.toggle("open");
 }
+
+var inputs = document.querySelectorAll('form input');
+function checkEmptyFields() {
+    var isEmpty = false;
+    inputs.forEach(function(input) {
+        if (input.value.trim() === '') {
+            isEmpty = true;
+        }
+    });
+    return isEmpty;
+}
+function sendNotification() {
+    alert('Please to input full information!');
+}
+function sendForm() {
+    document.querySelector('form').submit();
+}
+document.querySelector('form').addEventListener('submit', function(event) {
+    event.preventDefault();
+    if (checkEmptyFields()) {
+        sendNotification();
+    } else {
+        sendForm();
+    }
+});
