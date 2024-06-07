@@ -22,24 +22,6 @@ import static org.apache.logging.log4j.message.MapMessage.MapFormat.JSON;
 public class LoginController {
 
     @RequestMapping("/login")
-
-    public String login(){return "login";}
-
-    @PostMapping("/login")
-    public String login(@RequestParam("username") String username, @RequestParam("password") String password, Model model) {
-        if (username.isEmpty() || password.isEmpty()) {
-            model.addAttribute("error", "Please enter your both username and password");
-            return "login";
-        }
-        User user = userService.authUser(new User(username,password));
-        if (user!= null) {
-        // HttpSession session = request.getSession();
-        // session.setAttribute("user", user);
-            return "redirect:/student";
-        } else {
-            model.addAttribute("error", "Invalid username or password");
-            return "login";
-
     public String login() {
         return "login";
     }
@@ -65,7 +47,6 @@ public class LoginController {
             }
             e.printStackTrace();
             return "error";
-
         }
 
     }
