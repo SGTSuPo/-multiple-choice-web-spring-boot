@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -31,18 +31,16 @@
       <div class="row flex-lg-nowrap">
         <div id="sidebar" class="col bg-dark d-block">
           <button id="create-class-btn" class="btn bg-secondary" type="button">Create Class</button>
-          <div>
-            <input id="search-input-sidenav" type="search" class="form-control my-2" placeholder="Search"/>
-          </div>
-          <hr class="m-0 bg-light"/>
+          <hr class="m-0 bg-light mt-2"/>
           <!-- js -->
+          <a th:each="class: ${class}" href="#" class="btn btn-secondary" th:text="${class.getClassname()}"></a>
         </div>
         <!-- create -->
         <div id="create-class" class="container">
           <div class="form-create-class d-flex justify-content-center py-5">
             <form action="" method="post">
               <div class="form-group">
-                <input type="text" name="className" class="form-control-lg w-100" placeholder="Type Class name" maxlength="50">
+                <input type="text" id="className" name="className" class="form-control-lg w-100" placeholder="Type Class name" maxlength="50">
                 <br>
                 <span class="text-info text-break"></span>
               </div>
@@ -54,7 +52,7 @@
                 </select>
               </div>
               <div class="form-group">
-                <input type="text" name="subject" class="form-control-lg w-100" placeholder="Subject" maxlength="50">
+                <input type="text" id="subject" name="subject" class="form-control-lg w-100" placeholder="Subject" maxlength="50">
                 <br>
                 <span class="text-info text-break"></span>
               </div>
@@ -68,10 +66,22 @@
         <!--  -->
         <div id="workspace" class="d-flex flex-wrap justify-content-md-start justify-content-sm-between w-100">
         <!-- js -->
+          <div class="m-1 room" th:each="class: ${classList}">
+            <div class="card-title">
+              <a href="#"><div class="d-flex justify-content-center roomname" th:text="${class.getClassname()}"></div></a>
+              <hr class="m-0 bg-light">
+              <div class="info-class p-2">
+                <div class="info text-light w-100" th:text="'Subject: ' +${class.getSubject()}"></div>
+                <div class="info text-light w-100" th:text="'Grade: ' +${class.getGrade()}"></div>
+                <div class="info text-light w-100" th:text="'Code: ' +${class.getId()}"></div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
     <!--  -->
+    <script th:if="${mes}">alert("Joined class")</script>
     <script src="js/main.js"></script>
     <script src="js/home/teacher.js"></script>
   </body>
