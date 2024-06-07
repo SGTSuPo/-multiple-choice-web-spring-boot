@@ -22,7 +22,7 @@ public class Class {
     @JoinColumn(name = "host_id")
     private User host;
     //constructor
-    public Class(Long id, String classname, String subject, String grade, User host) {
+    public Class(String classname, String subject, String grade, User host) {
         this.id = id;
         this.classname = classname;
         this.subject = subject;

@@ -20,15 +20,12 @@ public class LoginController {
 
     @PostMapping("/login")
     public String login(@RequestParam("username") String username, @RequestParam("password") String password, Model model) {
-        // Kiểm tra tên đăng nhập và mật khẩu có hợp lệ không
         if (username.isEmpty() || password.isEmpty()) {
             model.addAttribute("error", "Please enter your both username and password");
             return "login";
         }
-        // Kiểm tra tên đăng nhập và mật khẩu có tồn tại trong database không
         User user = userService.authUser(new User(username,password));
         if (user!= null) {
-            // Tạo một phiên đăng nhập (session) và lưu trữ thông tin người dùng
         // HttpSession session = request.getSession();
         // session.setAttribute("user", user);
             return "redirect:/student";
