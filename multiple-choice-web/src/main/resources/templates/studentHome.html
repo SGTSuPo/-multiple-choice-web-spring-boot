@@ -32,14 +32,14 @@
           <button id="join-class-btn" class="btn bg-secondary" type="button">Join Class</button>
           <hr class="m-0 bg-light mt-2"/>
           <!-- js -->
-          <a th:each="class: ${class}" href="#" class="btn btn-secondary" th:text="${class.getClassname()}"></a>
+          <a th:each="class: ${classList}" href="#" class="btn btn-secondary" th:text="${class.getClassname()}"></a>
         </div>
         <!--join class -->
         <div id="join-class" class="container">
           <div class="form-join-class d-flex justify-content-center py-5">
-            <form action="" method="post">
+            <form action="/student" th:object="${joinClass}" method="post">
               <div class="form-group">
-                <input type="text" name="classID" class="form-control-lg w-75" placeholder="Type Class Code" maxlength="30">
+                <input type="text" name="classID" th:field="*{id}" class="form-control-lg w-75" placeholder="Type Class Code" maxlength="30">
                 <br>
                 <span class="text-info text-break">The Code which your teacher give to you</span>
               </div>
@@ -70,8 +70,8 @@
 
     </div>
     <!--  -->
-    <script th:if="${error}!=null">alert("This code does not exist")</script>
-    <script th:if="${error}==null">alert("Joined class")</script>
+    <script th:if="${error}!=null">alert("This code does not exist");</script>
+    <script th:if="${mes}!=null">alert("Joined class!");</script>
     <script src="js/main.js"></script>
     <script src="js/home/student.js"></script>
   </body>

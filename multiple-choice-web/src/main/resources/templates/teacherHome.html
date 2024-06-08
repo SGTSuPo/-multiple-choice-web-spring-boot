@@ -33,26 +33,26 @@
           <button id="create-class-btn" class="btn bg-secondary" type="button">Create Class</button>
           <hr class="m-0 bg-light mt-2"/>
           <!-- js -->
-          <a th:each="class: ${class}" href="#" class="btn btn-secondary" th:text="${class.getClassname()}"></a>
+          <a th:each="class: ${classList}" href="#" class="btn btn-secondary" th:text="${class.getClassname()}"></a>
         </div>
         <!-- create -->
         <div id="create-class" class="container">
           <div class="form-create-class d-flex justify-content-center py-5">
-            <form action="" method="post">
+            <form action="/teacher" th:object="${addClass}" method="post">
               <div class="form-group">
-                <input type="text" id="className" name="className" class="form-control-lg w-100" placeholder="Type Class name" maxlength="50">
+                <input type="text" id="className" name="className" th:field="*{classname}" class="form-control-lg w-100" placeholder="Type Class name" maxlength="50">
                 <br>
                 <span class="text-info text-break"></span>
               </div>
               <div class="form-group">
-                <select name="grade" class="form-control-lg w-100">
+                <select name="grade" th:field="*{grade}" class="form-control-lg w-100">
                   <option value="10">10</option>
                   <option value="11">11</option>
                   <option value="12">12</option>
                 </select>
               </div>
               <div class="form-group">
-                <input type="text" id="subject" name="subject" class="form-control-lg w-100" placeholder="Subject" maxlength="50">
+                <input type="text" id="subject" name="subject" th:field="*{subject}" class="form-control-lg w-100" placeholder="Subject" maxlength="50">
                 <br>
                 <span class="text-info text-break"></span>
               </div>
@@ -81,7 +81,6 @@
       </div>
     </div>
     <!--  -->
-    <script th:if="${mes}">alert("Joined class")</script>
     <script src="js/main.js"></script>
     <script src="js/home/teacher.js"></script>
   </body>

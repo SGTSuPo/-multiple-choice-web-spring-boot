@@ -32,12 +32,17 @@ public class UserService {
         userRepository.deleteById(id);
     }
 
-    public User authUser(User user) {
-            if(user.getUsername().equals("sgtsupo")) {
-                if (user.getPassword().equals("123")) {
-                    return user;
-                }
+    public String authUser(User user) {
+        if(user.getUsername().equals("student")) {
+            if (user.getPassword().equals("1")) {
+                return "STUDENT";
             }
-        return null;
+        }
+        if(user.getUsername().equals("teacher")) {
+            if (user.getPassword().equals("1")) {
+                return "TEACHER";
+            }
+        }
+        return "";
     }
 }

@@ -15,43 +15,54 @@ import java.util.List;
 @Controller
 public class HomeController {
     //test
-    @GetMapping("/student")
-    public String studentHome(Model model) {
+    public List<Class> classList() {
         List<Class> classList = new ArrayList<>();
         classList.add(new Class("LS", "Anh", "10", new User("Lộc")));
         classList.add(new Class("SK", "Anh", "10", new User("Tân")));
         classList.add(new Class("RD", "Anh", "12", new User("Lộc")));
+        return classList;
+    }
+    @GetMapping("/student")
+    public String studentHome(Model model) {
+        List<Class> classList = classList();
         model.addAttribute("classList", classList);
-        model.addAttribute("class",classList);
+        model.addAttribute("joinClass", new Class());
         return "studentHome";
     }
     @PostMapping("/student")
-    public String joinClass(Model model, @RequestParam String code) {
-        if(true /*kiểm tra*/){
+    public String joinClass(@ModelAttribute Class c, Model model) {
+        if(false /*kiểm tra*/){
             model.addAttribute("error","This code does not exist");
             return "redirect:/student";
         }
-        // ok
-        model.addAttribute("mes","Joined class successfully!");
-        return "redirect:/student";
+        else {
+            List<Class> classList = classList();
+            c.setClassname("new");
+            c.setGrade("11");
+            c.setSubject("IT");
+            c.setHost(new User("Lộc nè"));
+            classList.add(c);
+            model.addAttribute("classList", classList());
+//            model.addAttribute("mes", "Joined class successfully!");
+            return "redirect:/student";
+        }
     }
-
-    //test
     @GetMapping("/teacher")
     public String teacherHome(Model model) {
-        List<Class> classList = new ArrayList<>();
-        classList.add(new Class("LS", "Anh", "10", new User("Lộc")));
-        classList.add(new Class("SK", "Anh", "10", new User("Tân")));
-        classList.add(new Class("RD", "Anh", "12", new User("Lộc")));
+        List<Class> classList = classList();
         model.addAttribute("classList", classList);
-        model.addAttribute("class",classList);
+        model.addAttribute("addClass", new Class());
         return "teacherHome";
     }
 
     @PostMapping("/teacher")
-    public ResponseEntity<Class> createClass(@RequestBody Class newClass) {
-        //code
-
-        return ResponseEntity.ok(newClass);
+    public String createClass(@ModelAttribute Class c, Model model) {
+        //xử lí db
+        List<Class> classList = classList();
+        c.setHost(new User("Lộc"));
+        classList.add(c);
+        model.addAttribute("classList", classList());
+        model.addAttribute("addClass", new Class());
+        return "redirect:/teacher";
     }
 }
