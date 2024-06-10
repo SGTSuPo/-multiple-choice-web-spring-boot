@@ -2,9 +2,13 @@ package com.example.multiplechoiceweb.model;
 
 import jakarta.persistence.*;
 import jakarta.persistence.Id;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.*;
 
 @Entity
+@NoArgsConstructor
+@AllArgsConstructor
 public class Chapter {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -17,7 +21,12 @@ public class Chapter {
     @ManyToOne
     @JoinColumn(name = "class_id")
     private Class classEntity;
-
+    // constructor
+    public Chapter(String name, String description, Class classEntity) {
+        this.name = name;
+        this.description = description;
+        this.classEntity = classEntity;
+    }
     // getters and setters
     public Long getId() {
         return id;

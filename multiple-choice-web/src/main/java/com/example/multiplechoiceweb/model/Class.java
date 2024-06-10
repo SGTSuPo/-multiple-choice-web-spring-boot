@@ -2,11 +2,13 @@ package com.example.multiplechoiceweb.model;
 
 import jakarta.persistence.*;
 import jakarta.persistence.Id;
+import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.*;
 
 @Entity
 @NoArgsConstructor
+@AllArgsConstructor
 public class Class {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

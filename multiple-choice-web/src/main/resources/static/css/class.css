@@ -7,6 +7,7 @@
 }
 body
 {
+    display: block;
     text-align: center;
     min-width: 350px;
     background-image: url('https://static.vecteezy.com/system/resources/previews/011/058/150/original/blank-white-background-with-wavy-green-and-simple-design-suitable-for-presentation-background-vector.jpg');
