@@ -1,15 +1,13 @@
 package com.example.multiplechoiceweb.controller;
 
-import com.example.multiplechoiceweb.entity.classEntity;
-import com.example.multiplechoiceweb.utils.HibernateUtils;
+import com.example.multiplechoiceweb.entity.Class;
+import com.example.multiplechoiceweb.entity.Role;
+import com.example.multiplechoiceweb.entity.UserAccount;
+import com.example.multiplechoiceweb.utils.HibernateUtil;
 
 import com.google.gson.Gson;
-import netscape.javascript.JSObject;
-import org.apache.tomcat.util.json.JSONParser;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
-import org.springframework.boot.configurationprocessor.json.JSONArray;
-import org.springframework.boot.configurationprocessor.json.JSONObject;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -32,14 +30,17 @@ public class LoginController {
     public String getData() {
 //
         Transaction transaction = null;
-        try (Session session = HibernateUtils.getSessionFactory().openSession()) {
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             // start a transaction
             transaction = session.beginTransaction();
             // save the student objects
-            List<classEntity> classes = session.createQuery("from classEntity", classEntity.class).getResultList();
+            List<UserAccount > res = session.createQuery("from UserAccount ").getResultList();
             // commit transaction
+            System.out.println(res.toString());
+//            System.out.println(new Gson().toJson(res.toString()));
             transaction.commit();
-            return new Gson().toJson(classes);
+//            return new Gson().toJson(res);
+            return "succes";
 
         } catch (Exception e) {
             if (transaction != null) {

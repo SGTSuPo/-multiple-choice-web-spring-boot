@@ -10,9 +10,8 @@ import java.time.LocalDate;
 @Getter
 @Setter
 @Entity
-@Table(name = "\"user\"")
-
-public class User {
+@Table(name = "userAccount")
+public class UserAccount {
     @Id
     @Column(name = "id", nullable = false, length = 40)
     private String id;
@@ -42,8 +41,22 @@ public class User {
     @Column(name = "phone", length = 12)
     private String phone;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "roleID", nullable = false)
     private Role roleID;
 
+    @Override
+    public String toString() {
+        return "UserAccount{" +
+                "id='" + id + '\'' +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+//                ", dob=" + dob +
+//                ", address='" + address + '\'' +
+//                ", phone='" + phone + '\'' +
+//                ", roleID=" + roleID +
+                '}';
+    }
 }
