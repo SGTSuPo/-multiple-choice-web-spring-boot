@@ -32,12 +32,12 @@
           <button id="create-class-btn" class="btn bg-secondary" type="button">Create Class</button>
           <hr class="m-0 bg-light mt-2"/>
           <!-- js -->
-          <a th:each="class: ${classList}" th:href="@{teacher/class(id=*{class.getId()})}" class="btn btn-secondary" th:text="${class.getName()}"></a>
+          <a th:each="class: ${classList}" th:href="@{/teacher/class(id=${id},c=*{class.getId()})}" class="btn btn-secondary" th:text="${class.getName()}"></a>
         </div>
         <!-- create -->
         <div id="create-class" class="container">
           <div class="form-create-class d-flex justify-content-center py-5">
-            <form th:action="@{/teacher(id=${id})}" th:object="${addClass}" method="post">
+            <form th:action="@{/teacher/home(id=${id})}" th:object="${addClass}" method="post">
               <div class="form-group">
                 <input type="text" id="className" name="className" th:field="*{name}" class="form-control-lg w-100" placeholder="Type Class name" maxlength="50">
                 <br>
@@ -67,7 +67,7 @@
         <!-- js -->
           <div class="m-1 room" th:each="class: ${classList}">
             <div class="card-title">
-              <a th:href="@{teacher/class(id=*{class.getId()})}"><div class="d-flex justify-content-center roomname" th:text="${class.getName()}"></div></a>
+              <a th:href="@{/teacher/class(id=${id},c=*{class.getId()})}"><div class="d-flex justify-content-center roomname" th:text="${class.getName()}"></div></a>
               <hr class="m-0 bg-light">
               <div class="info-class p-2">
                 <div class="info text-light w-100" th:text="'Subject: ' +${class.getSubject()}"></div>

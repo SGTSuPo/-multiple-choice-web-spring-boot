@@ -30,9 +30,9 @@ public class LoginController {
         else{
             if(user.getPassword().equals(password)){
                 if (user.getRole().getRolename().equals("student")){
-                    return "redirect:/student?id=" + user.getId();
+                    return "redirect:/student/home?id=" + user.getId();
                 }
-                else return "redirect:/teacher?id=" + user.getId();
+                else return "redirect:/teacher/home?id=" + user.getId();
             }
             else {
                 model.addAttribute("error", "Wrong password");

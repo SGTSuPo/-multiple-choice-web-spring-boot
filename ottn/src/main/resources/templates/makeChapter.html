@@ -1,13 +1,13 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>OTTN</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
-    <link rel="icon" type="image" href="images/WebIcon.png">
-    <link rel="stylesheet" href="css/chapter.css">
+    <link rel="icon" type="image" th:href="@{/images/WebIcon.png}">
+    <link rel="stylesheet" th:href="@{/css/chapter.css}">
   </head>
   <body>
     <nav class="navbar navbar-dark position-fixed bg-dark justify-content-between">
@@ -16,13 +16,12 @@
       </button>
       <div class="dropdown">
         <button class="btn" type="button" id="dropdown-btn">
-          <img src="images/icon-btn.png"  width="40px" height="40px">
+          <img th:src="@{/images/icon-btn.png}"  width="40px" height="40px">
         </button>
         <div class="dropdown-menu bg-dark"  id="dropdown-account">
-          <a class="dropdown-item text-light" href="info.html">Information</a>
-          <a class="dropdown-item text-light" href="changePassword.html">Change Password</a>
-          <a class="dropdown-item text-light" href="addAccount.html">Add Account</a>
-          <a class="dropdown-item text-danger" href="login.html">Log out</a>
+          <a class="dropdown-item text-light" href="">Information</a>
+          <a class="dropdown-item text-light" href="">Change Password</a>
+          <a class="dropdown-item text-danger" href="">Log out</a>
         </div>
       </div>
     </nav>
@@ -31,39 +30,42 @@
       <div class="row flex-lg-nowrap">
         <div id="sidebar" class="col bg-dark d-block">
           <!-- js -->
+          <a th:href="@{/teacher/home(id=${id})}" class="btn bg-secondary">Home</a>
+          <a th:href="@{/teacher/class(id=${id},c=${cid})}" class="btn bg-secondary">Class</a>
+          <button id="add-question-btn-sidebar" class="btn btn-secondary" type="button" onclick="addQuestionBtn()">Add Question</button>
           <hr class="mt-2 bg-light"/>
         </div>
         <!-- add question -->
         <div id="add-question" class="p-2">
           <div class="form-add-question">
-            <form method="post">
+            <form th:action="@{/teacher/class/chapter(id=${id},c=${cid},ch=${ch.getId()})}" method="post" th:object="${addQuestion}">
               <div class="form-group">
-                <textarea name="detail" rows="5" class="form-control w-100" placeholder="Type Question"></textarea>
+                <textarea th:field="*{detail}" name="detail" rows="5" class="form-control w-100" placeholder="Type Question"></textarea>
               </div>
               <div class="form-group">
-                <select name="type" class="form-control w-100">
-                  <option value="NB">Nhận biết</option>
-                  <option value="TH">Thông hiểu</option>
-                  <option value="VD">Vận dụng</option>
-                  <option value="VDC">Nâng cao</option>
+                <select th:field="*{type}" name="type" class="form-control w-100">
+                  <option th:value="NB">Nhận biết</option>
+                  <option th:value="TH">Thông hiểu</option>
+                  <option th:value="VD">Vận dụng</option>
+                  <option th:value="VDC">Nâng cao</option>
                 </select>
               </div>
               <div class="form-group">
-                <input type="text" name="A" placeholder="A" class="form-control mt-1">
-                <input type="text" name="B" placeholder="B" class="form-control mt-1">
-                <input type="text" name="C" placeholder="C" class="form-control mt-1">
-                <input type="text" name="D" placeholder="D" class="form-control mt-1">
+                <input th:field="*{a}" type="text" name="A" placeholder="A" class="form-control mt-1">
+                <input th:field="*{b}" type="text" name="B" placeholder="B" class="form-control mt-1">
+                <input th:field="*{c}" type="text" name="C" placeholder="C" class="form-control mt-1">
+                <input th:field="*{d}" type="text" name="D" placeholder="D" class="form-control mt-1">
               </div>
               <div class="form-group">
-                <select name="answer" class="form-control w-100">
-                  <option value="A">Answer: A</option>
-                  <option value="B">Answer: B</option>
-                  <option value="C">Answer: C</option>
-                  <option value="D">Answer: D</option>
+                <select th:field="*{ans}" name="answer" class="form-control w-100">
+                  <option th:value="A">Answer: A</option>
+                  <option th:value="B">Answer: B</option>
+                  <option th:value="C">Answer: C</option>
+                  <option th:value="D">Answer: D</option>
                 </select>
               </div>
               <div class="form-group">
-                <textarea name="explain" rows="2" class="form-control w-100" placeholder="Explaination"></textarea>
+                <textarea th:field="*{explain}" name="explain" rows="2" class="form-control w-100" placeholder="Explaination"></textarea>
               </div>
               <div class="form-group text-center">
                 <button type="submit" class="btn btn-primary btn-group justify-content-center w-25" >Add</button>
@@ -83,17 +85,43 @@
         <!--  -->
         <div id="workspace" class="d-flex flex-wrap justify-content-start w-100">
             <!-- js -->
+          <div class="chapter-title w-100"><h2 th:text="${ch.getName()}"></h2></div>
             <div class="questions mt-2 w-100">
               <!-- js -->
+              <div th:each="ques:${questionList}" class="question w-100 p-3 bg-secondary border-light border-bottom text-light text-left">
+                <div class="detail-question">
+                  <p th:text="'['+*{ques.getType()}+'] '+*{ques.getDetail()}"></p>
+                </div>
+                <div class="selections">
+                  <div class="seletion">
+                    <input class="m-1" type="radio" th:name="${ques.getId()}" th:value="*{ques.getAns()}=='A'?1:0" th:text="*{ques.getA()}">
+                  </div>
+                  <div class="seletion">
+                    <input class="m-1" type="radio" th:name="${ques.getId()}" th:value="*{ques.getAns()}=='B'?1:0" th:text="*{ques.getB()}">
+                  </div>
+                  <div class="seletion">
+                    <input class="m-1" type="radio" th:name="${ques.getId()}" th:value="*{ques.getAns()}=='C'?1:0" th:text="*{ques.getC()}">
+                  </div>
+                  <div class="seletion">
+                    <input class="m-1" type="radio" th:name="${ques.getId()}" th:value="*{ques.getAns()}=='D'?1:0" th:text="*{ques.getD()}">
+                  </div>
+                </div>
+                <div class="text-left text-primary">
+                  <p th:text="'Answer: '+*{ques.getAns()}" class="m-0"></p>
+                  <p th:text="*{ques.getExplain()}" class="m-0"></p>
+                </div>
+              </div>
             </div>
+          <div class="mt-2 ">
+            <button id="add-question-btn" class="btn bg-primary text-light" type="button" onclick="addQuestionBtn()">Add Question</button>
+          </div>
             <!-- add button -->
-            <!-- js -->
         </div>
       </div>
     </div>
     
-    <script src="js/main.js"></script>
-    <script src="js/chapter/teacher.js"></script>
+    <script th:src="@{/js/main.js}"></script>
+    <script th:src="@{/js/chapter/teacher.js}"></script>
   </body>
   </html>
   

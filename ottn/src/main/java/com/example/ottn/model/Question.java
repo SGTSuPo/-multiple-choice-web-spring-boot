@@ -18,13 +18,13 @@ public class Question {
 
     private String detail;
 
-    private String A;
+    private String a;
 
-    private String B;
+    private String b;
 
-    private String C;
+    private String c;
 
-    private String D;
+    private String d;
 
     private String ans;
 
@@ -34,4 +34,15 @@ public class Question {
     @JoinColumn(name = "chapter_id")
     private Chapter chapter;
 
+    public Question(String type, String detail, String A, String B, String C, String D, String ans, String explain, Chapter chapter) {
+        this.type = type;
+        this.detail = detail;
+        this.a = A;
+        this.b = B;
+        this.c = C;
+        this.d = D;
+        this.ans = ans;
+        this.explain = explain;
+        this.chapter = chapter;
+    }
 }

@@ -21,4 +21,10 @@ public class Chapter {
     @ManyToOne
     @JoinColumn(name = "class_id")
     private Class classID;
+
+    public Chapter(String name, String description, Class classID) {
+        this.name = name;
+        this.description = description;
+        this.classID = classID;
+    }
 }

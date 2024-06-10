@@ -32,12 +32,12 @@
           <button id="join-class-btn" class="btn bg-secondary" type="button">Join Class</button>
           <hr class="m-0 bg-light mt-2"/>
           <!-- js -->
-          <a th:each="class: ${classList}" th:href="@{student/class(id=*{class.getId()})}" class="btn btn-secondary" th:text="${class.getName()}"></a>
+          <a th:each="class: ${classList}" th:href="@{/student/class(id=${id},c=*{class.getId()})}" class="btn btn-secondary" th:text="${class.getName()}"></a>
         </div>
         <!--join class -->
         <div id="join-class" class="container">
           <div class="form-join-class d-flex justify-content-center py-5">
-            <form th:action="@{/student(id=${id})}" method="post">
+            <form th:action="@{/student/home(id=${id})}" method="post">
               <div class="form-group">
                 <input type="text" name="classID" class="form-control-lg w-75" placeholder="Type Class Code" maxlength="30">
                 <br>
@@ -54,7 +54,7 @@
         <div id="workspace" class="d-flex flex-wrap justify-content-md-start justify-content-sm-between w-100">
           <div class="m-1 room" th:each="class: ${classList}">
             <div class="card-title">
-              <a th:href="@{/student/class(id=*{class.getId()})}"><div class="d-flex justify-content-center roomname" th:text="${class.getName()}"></div></a>
+              <a th:href="@{/student/class(id=${id},c=*{class.getId()})}"><div class="d-flex justify-content-center roomname" th:text="${class.getName()}"></div></a>
               <hr class="m-0 bg-light">
               <div class="info-class p-2">
                 <div class="info text-light w-100" th:text="'Subject: ' +${class.getSubject()}"></div>

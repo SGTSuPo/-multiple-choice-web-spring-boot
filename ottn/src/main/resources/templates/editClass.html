@@ -19,9 +19,9 @@
           <img th:src="@{/images/icon-btn.png}"  width="40px" height="40px">
         </button>
         <div class="dropdown-menu bg-dark"  id="dropdown-account">
-          <a class="dropdown-item text-light" th:href="@{/info(id=)}">Information</a>
-          <a class="dropdown-item text-light" th:href="@{/change-pass(id=)}">Change Password</a>
-          <a class="dropdown-item text-danger" th:href="@{/login}">Log out</a>
+          <a class="dropdown-item text-light" href="">Information</a>
+          <a class="dropdown-item text-light" href="">Change Password</a>
+          <a class="dropdown-item text-danger" href="">Log out</a>
         </div>
       </div>
     </nav>
@@ -30,15 +30,15 @@
       <div class="row flex-lg-nowrap">
         <div id="sidebar" class="col bg-dark d-block">
           <button id="add-chapter-btn" class="btn bg-secondary" type="button">Add Chapter</button>
-          <a th:href="@{/teacher}" class="btn bg-secondary">Home</a>
+          <a th:href="@{/teacher/home(id=${id})}" class="btn bg-secondary">Home</a>
           <hr class="mt-2 bg-light"/>
           <!-- js -->
-          <a th:each="chapter :${chapterList}" th:href="@{class/chapter(id=*{chapter.getId()})}" th:text="*{chapter.getName()}" class="btn btn-secondary"></a>
+          <a th:each="chapter :${chapterList}" th:href="@{/teacher/class/chapter(id=${id},c=${class.getId()},ch=*{chapter.getId()})}" th:text="*{chapter.getName()}" class="btn btn-secondary"></a>
         </div>
         <!-- add chapter -->
         <div id="add-chapter" class="container">
           <div class="form-create-chapter d-flex justify-content-center py-4">
-            <form th:action="@{/teacher/class}" th:object="${addChapter}" method="post">
+            <form th:action="@{/teacher/class(id=${id},c=${class.getId()})}" th:object="${addChapter}" method="post">
               <div class="form-group">
                 <input th:field="*{name}" type="text" name="chapterName" class="form-control-lg w-100" placeholder="Chapter Name" maxlength="50">
               </div>
@@ -54,10 +54,10 @@
         </div>
         <!--  -->
         <div id="workspace" class="d-flex flex-wrap justify-content-start w-100">
-          <div th:text="${classname}" class="class-title w-100 bg-info"></div>
+          <div th:text="${class.getName()}" class="class-title w-100 bg-info"></div>
           <!-- js -->
           <div class="chapters d-flex flex-wrap ">
-            <a th:each="chapter: ${chapterList}" th:href="@{class/chapter(id=*{chapter.getId()})}" class="chapter m-2 ml-5 ">
+            <a th:each="chapter: ${chapterList}" th:href="@{/teacher/class/chapter(id=${id},c=${class.getId()},ch=*{chapter.getId()})}" class="chapter m-2 ml-5">
               <div class="text-light d-block p-1">
                 <h3 th:text="*{chapter.getName()}" class="w-100" th:title="*{chapter.getName()}"></h3>
                 <p th:text="*{chapter.getDescription()}"></p>

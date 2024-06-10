@@ -19,9 +19,9 @@
           <img th:src="@{/images/icon-btn.png}"  width="40px" height="40px">
         </button>
         <div class="dropdown-menu bg-dark"  id="dropdown-account">
-          <a class="dropdown-item text-light" th:href="@{/info(id=)}">Information</a>
-          <a class="dropdown-item text-light" th:href="@{/change-pass(id=)}">Change Password</a>
-          <a class="dropdown-item text-danger" th:href="@{/login}">Log out</a>
+          <a class="dropdown-item text-light" href="">Information</a>
+          <a class="dropdown-item text-light" href="">Change Password</a>
+          <a class="dropdown-item text-danger" href="">Log out</a>
         </div>
       </div>
     </nav>
@@ -29,19 +29,19 @@
     <div class="container-fluid">
       <div class="row flex-lg-nowrap">
         <div id="sidebar" class="col bg-dark d-block">
-          <a th:href="@{/student}" class="btn bg-secondary">Home</a>
+          <a th:href="@{/student/home(id=${id})}" class="btn bg-secondary">Home</a>
           <hr class="mt-2 bg-light"/>
           <!-- js -->
-          <a th:each="chapter:${chapterList}" th:href="@{class/chapter(id=*{chapter.getId()})}" class="btn btn-secondary" th:text="*{chapter.getName()}"></a>
+          <a th:each="chapter:${chapterList}" th:href="@{/student/class/chapter(id=${id},c=${class.getId()},ch=*{chapter.getId()})}" class="btn btn-secondary" th:text="*{chapter.getName()}"></a>
         </div>
         <!--  -->
         <div id="workspace" class="d-flex flex-wrap justify-content-start w-100">
-          <div class="class-title w-100 bg-info" th:text="${classname}"></div>
+          <div class="class-title w-100 bg-info" th:text="${class.getName()}"></div>
           <div class="chapters d-flex flex-wrap">
-            <a th:each="chapter:${chapterList}" th:href="@{class/chapter(id=${chapter.getId()})}" class="chapter m-2 ml-5 ">
+            <a th:each="chapter:${chapterList}" th:href="@{/student/class/chapter(id=${id},c=${class.getId()},ch=*{chapter.getId()})}" class="chapter m-2 ml-5 ">
               <div class="text-light d-block p-1">
-                <h3 class="w-100" th:text="${chapter.getName()}" th:title="${chapter.getName()}"></h3>
-                <p th:text="${chapter.getDescription()}"></p>
+                <h3 class="w-100" th:text="*{chapter.getName()}" th:title="*{chapter.getName()}"></h3>
+                <p th:text="*{chapter.getDescription()}"></p>
               </div>
             </a>
           </div>
@@ -49,7 +49,7 @@
       </div>
     </div>
     <script th:src="@{/js/main.js}"></script>
-<!--    <script src="js/class/student.js"></script>-->
+    <script th:src="@{/js/class/student.js}"></script>
   </body>
   </html>
   
