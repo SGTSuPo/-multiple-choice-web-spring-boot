@@ -10,4 +10,6 @@ import java.util.List;
 public interface UserRepository extends JpaRepository<User, Long> {
     User findByUsername(String username);
     User getUserById(long id);
+
+//    void updatePassword(User user, String newpass);
 }

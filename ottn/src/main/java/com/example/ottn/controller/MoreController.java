@@ -30,15 +30,20 @@ public class MoreController {
         model.addAttribute("id", id);
         return "changePassword";
     }
-    @PutMapping("/changepass")
-    public String changepass(Model model, @RequestParam("oldpass") String oldpass, @RequestParam("newpass")String newpass,@RequestParam("id")Long id) {
+    @PostMapping("/changepass")
+    public String changepass(Model model, @RequestParam("oldpass") String oldpass, @RequestParam("newpass")String newpass,@RequestParam("confirmpass")String confirm,@RequestParam("id")Long id) {
         User user = userRepository.getUserById(id);
-        if(oldpass.compareTo(user.getPassword())==0) {
-            user.setPassword(newpass);
-            userRepository.save(user);
+        if(oldpass.compareTo(user.getPassword())!=0) {
+            model.addAttribute("error","Wrong current password");
         }
         else{
-            model.addAttribute("error","Wrong current password");
+            if(newpass.compareTo(confirm)!=0) {
+                model.addAttribute("error","Wrong confirm password");
+            }
+            else {
+                user.setPassword(newpass);
+                userRepository.save(user);
+            }
         }
         model.addAttribute("id", id);
         return "redirect:/changepass?id="+id;
