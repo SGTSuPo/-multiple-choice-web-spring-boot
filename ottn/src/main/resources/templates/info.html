@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -11,53 +11,51 @@
   </head>
   <body>
     <nav class="navbar navbar-dark position-fixed bg-dark justify-content-between">
-      <button id="toggle" class="navbar-toggler" type="button">
-        <span class="navbar-toggler-icon"></span>
-      </button>
+      <a class="bg-dark text-light btn" th:href="@{/home(id=${id})}">
+        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-house" viewBox="0 0 16 16">
+          <path d="M8.707 1.5a1 1 0 0 0-1.414 0L.646 8.146a.5.5 0 0 0 .708.708L2 8.207V13.5A1.5 1.5 0 0 0 3.5 15h9a1.5 1.5 0 0 0 1.5-1.5V8.207l.646.647a.5.5 0 0 0 .708-.708L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293zM13 7.207V13.5a.5.5 0 0 1-.5.5h-9a.5.5 0 0 1-.5-.5V7.207l5-5z"/>
+        </svg>
+      </a>
       <div class="dropdown">
         <button class="btn" type="button" id="dropdown-btn">
           <img src="images/icon-btn.png"  width="40px" height="40px">
         </button>
         <div class="dropdown-menu bg-dark"  id="dropdown-account">
-          <a class="dropdown-item text-light" href="info.html">Information</a>
-          <a class="dropdown-item text-light" href="changePassword.html">Change Password</a>
-          <a class="dropdown-item text-danger" href="login.html">Log out</a>
+          <div class="dropdown-item text-primary">Information</div>
+          <a class="dropdown-item text-light" th:href="@{/changepass(id=${id})}">Change Password</a>
+          <a class="dropdown-item text-danger" th:href="@{/login}">Log out</a>
         </div>
       </div>
     </nav>
     <!--  -->
     <div class="container-fluid">
       <div class="row flex-lg-nowrap">
-        <div id="sidebar" class="col bg-dark d-block">
-          <a class="btn bg-secondary" href="studentHome.html">Home</a>
-          <hr class="mt-2 bg-light"/>
-        </div>
         <!--  -->
         <div id="workspace" class="d-flex">
           <table class="info">
           <tr>
               <th class="text-primary">First Name</th>
-              <td><div class="m-2">Nguyễn Tấn</div></td>
+              <td><div class="m-2" th:text="${user.getFirstName()}"></div></td>
           </tr>
           <tr>
               <th class="text-primary">Last Name</th>
-              <td><div class=" m-2">Lộc</div></td>
+              <td><div class=" m-2" th:text="${user.getLastName()}"></div></td>
           </tr>
           <tr>
               <th class="text-primary">Date of Birth</th>
-              <td><div class=" m-2">29/08/2003</div></td>
+              <td><div class=" m-2" th:text="${user.getDOB()}"></div></td>
           </tr>
           <tr>
               <th class="text-primary">Address</th>
-              <td><div class=" m-2">Đồng Nai</div></td>
+              <td><div class=" m-2" th:text="${user.getAddress()}"></div></td>
           </tr>
           <tr>
               <th class="text-primary">Phone Number</th>
-              <td><div class=" m-2">0*********</div></td>
+              <td><div class=" m-2" th:text="${user.getPhone()}"></div></td>
           </tr>
           <tr>
               <th class="text-primary">Role</th>
-              <td><div class=" m-2">Admin</div></td>
+              <td><div class=" m-2" th:text="${user.getRole().getRolename()}"></div></td>
           </tr>
           </table>
       </div>
@@ -67,7 +65,7 @@
       </div>
 
     </div>
-    <script src="js/main.js"></script>
+    <script th:src="@{/js/main.js}"></script>
   </body>
   </html>
   

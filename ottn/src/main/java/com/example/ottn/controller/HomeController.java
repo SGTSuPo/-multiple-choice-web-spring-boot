@@ -69,4 +69,13 @@ public class HomeController {
         classRepository.save(c);
         return "redirect:/teacher/home?id="+userid;
     }
+
+    @RequestMapping("/home")
+    public String home(@RequestParam(value = "id",required = true) Long userid) {
+        User user = userRepository.getUserById(userid);
+        if(user.getRole().getRolename().equals("student")){
+            return "redirect:/student/home?id="+userid;
+        }
+        return "redirect:/teacher/home?id="+userid;
+    }
 }

@@ -25,10 +25,10 @@ public class ChapterController {
 //        Long chid = Long.parseLong(ch);
         Chapter chap = chapterRepository.getChapterById(ch);
         List<Question> questionList = questionRepository.getAllQuestionByChapter(chap);
-        model.addAttribute("chapterList", questionList);
+        model.addAttribute("questionList", questionList);
         model.addAttribute("id", userid);
         model.addAttribute("cid", c);
-        model.addAttribute("chap", chap);
+        model.addAttribute("ch", chap);
         return "doChapter";
     }
     @GetMapping("/teacher/class/chapter")
@@ -46,7 +46,7 @@ public class ChapterController {
     public String makeChapter(Model model, @ModelAttribute("addQuestion")Question ques, @RequestParam(value="id", required = true)Long userid, @RequestParam(value="c",required = true)Long c, @RequestParam(value = "ch",required = true)Long ch) {
         Chapter chap = chapterRepository.getChapterById(ch);
         ques.setChapter(chap);
-        Question q = new Question(ques.getType(),ques.getDetail(),ques.getA(),ques.getB(),ques.getC(),ques.getD(),ques.getAns(),ques.getExplain(),ques.getChapter());
+        Question q = new Question(ques.getType(),ques.getDetail(),ques.getA(),ques.getB(),ques.getC(),ques.getD(),ques.getAns(),ques.getExplaination(),ques.getChapter());
         questionRepository.save(q);
         List<Question> questionList = questionRepository.getAllQuestionByChapter(chap);
         model.addAttribute("chapterList", questionList);

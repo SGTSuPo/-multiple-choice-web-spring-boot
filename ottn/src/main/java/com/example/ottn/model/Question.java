@@ -28,13 +28,13 @@ public class Question {
 
     private String ans;
 
-    private String explain;
+    private String explaination;
 
     @ManyToOne
     @JoinColumn(name = "chapter_id")
     private Chapter chapter;
 
-    public Question(String type, String detail, String A, String B, String C, String D, String ans, String explain, Chapter chapter) {
+    public Question(String type, String detail, String A, String B, String C, String D, String ans, String explaination, Chapter chapter) {
         this.type = type;
         this.detail = detail;
         this.a = A;
@@ -42,7 +42,7 @@ public class Question {
         this.c = C;
         this.d = D;
         this.ans = ans;
-        this.explain = explain;
+        this.explaination = explaination;
         this.chapter = chapter;
     }
 }

@@ -19,9 +19,9 @@
           <img th:src="@{/images/icon-btn.png}"  width="40px" height="40px">
         </button>
         <div class="dropdown-menu bg-dark"  id="dropdown-account">
-          <a class="dropdown-item text-light" href="">Information</a>
-          <a class="dropdown-item text-light" href="">Change Password</a>
-          <a class="dropdown-item text-danger" href="">Log out</a>
+          <a class="dropdown-item text-light" th:href="@{/info(id=${id})}">Information</a>
+          <a class="dropdown-item text-light" th:href="@{/changepass(id=${id})}">Change Password</a>
+          <a class="dropdown-item text-danger" th:href="@{/login}">Log out</a>
         </div>
       </div>
     </nav>
@@ -35,7 +35,7 @@
         </div>
         <!--  -->
         <div id="workspace" class="d-flex flex-wrap justify-content-start w-100">
-          <div class="chapter-title w-100 mb-2"><h2 th:text="${chap.getName()}"></h2></div>
+          <div class="chapter-title w-100 mb-2"><h2 th:text="${ch.getName()}"></h2></div>
           <div class="questions mt-2 w-100">
           <!--          -->
             <div th:each="ques:${questionList}" class="question w-100 p-3 bg-secondary border-light border-bottom text-light text-left">

@@ -19,9 +19,9 @@
           <img th:src="@{/images/icon-btn.png}"  width="40px" height="40px">
         </button>
         <div class="dropdown-menu bg-dark"  id="dropdown-account">
-          <a class="dropdown-item text-light" href="">Information</a>
-          <a class="dropdown-item text-light" href="">Change Password</a>
-          <a class="dropdown-item text-danger" href="">Log out</a>
+          <a class="dropdown-item text-light" th:href="@{/info(id=${id})}">Information</a>
+          <a class="dropdown-item text-light" th:href="@{/changepass(id=${id})}">Change Password</a>
+          <a class="dropdown-item text-danger" th:href="@{/login}">Log out</a>
         </div>
       </div>
     </nav>
@@ -40,15 +40,15 @@
           <div class="form-add-question">
             <form th:action="@{/teacher/class/chapter(id=${id},c=${cid},ch=${ch.getId()})}" method="post" th:object="${addQuestion}">
               <div class="form-group">
-                <textarea th:field="*{detail}" name="detail" rows="5" class="form-control w-100" placeholder="Type Question"></textarea>
-              </div>
-              <div class="form-group">
                 <select th:field="*{type}" name="type" class="form-control w-100">
                   <option th:value="NB">Nhận biết</option>
                   <option th:value="TH">Thông hiểu</option>
                   <option th:value="VD">Vận dụng</option>
                   <option th:value="VDC">Nâng cao</option>
                 </select>
+              </div>
+              <div class="form-group">
+                <textarea th:field="*{detail}" name="detail" rows="5" class="form-control w-100" placeholder="Type Question"></textarea>
               </div>
               <div class="form-group">
                 <input th:field="*{a}" type="text" name="A" placeholder="A" class="form-control mt-1">
@@ -65,7 +65,7 @@
                 </select>
               </div>
               <div class="form-group">
-                <textarea th:field="*{explain}" name="explain" rows="2" class="form-control w-100" placeholder="Explaination"></textarea>
+                <textarea th:field="*{explaination}" name="explaination" rows="2" class="form-control w-100" placeholder="Explaination"></textarea>
               </div>
               <div class="form-group text-center">
                 <button type="submit" class="btn btn-primary btn-group justify-content-center w-25" >Add</button>
@@ -108,7 +108,7 @@
                 </div>
                 <div class="text-left text-primary">
                   <p th:text="'Answer: '+*{ques.getAns()}" class="m-0"></p>
-                  <p th:text="*{ques.getExplain()}" class="m-0"></p>
+                  <p th:text="*{ques.getExplaination()}" class="m-0"></p>
                 </div>
               </div>
             </div>
